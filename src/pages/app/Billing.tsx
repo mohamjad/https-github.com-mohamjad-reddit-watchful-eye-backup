@@ -107,7 +107,7 @@ const Billing = () => {
           {plans.map((plan) => (
             <Card
               key={plan.name}
-              className={`glass-card p-6 ${
+              className={`glass-card p-6 flex flex-col ${
                 subscription?.plan.toLowerCase() === plan.name.toLowerCase()
                   ? "border-primary"
                   : ""
@@ -117,7 +117,7 @@ const Billing = () => {
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                 <div className="text-3xl font-bold">{plan.price}</div>
               </div>
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3 mb-6 flex-1">
                 {plan.features.map((feature, idx) => (
                   <li key={feature} className="flex items-start gap-2">
                     {feature === "Coming Soon" ? (
@@ -126,28 +126,30 @@ const Billing = () => {
                       </span>
                     ) : (
                       <>
-                        <Check className="w-5 h-5 text-primary mt-0.5" />
+                        <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                         <span>{feature}</span>
                       </>
                     )}
                   </li>
                 ))}
               </ul>
-              {subscription?.plan.toLowerCase() === plan.name.toLowerCase() ? (
-                <Button className="w-full" variant="outline" disabled>
-                  Current Plan
-                </Button>
-              ) : plan.name === "Pro" ? (
-                <a href="https://forms.gle/waitlist" target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full" variant="outline">
-                    Join Waitlist
+              <div className="mt-auto">
+                {subscription?.plan.toLowerCase() === plan.name.toLowerCase() ? (
+                  <Button className="w-full" variant="outline" disabled>
+                    Current Plan
                   </Button>
-                </a>
-              ) : (
-                <Button className="w-full gradient-primary">
-                  {plan.name === "Free" ? "Downgrade" : "Upgrade"}
-                </Button>
-              )}
+                ) : plan.name === "Pro" ? (
+                  <a href="https://forms.gle/waitlist" target="_blank" rel="noopener noreferrer" className="block">
+                    <Button className="w-full" variant="outline">
+                      Join Waitlist
+                    </Button>
+                  </a>
+                ) : (
+                  <Button className="w-full gradient-primary">
+                    {plan.name === "Free" ? "Downgrade" : "Upgrade"}
+                  </Button>
+                )}
+              </div>
             </Card>
           ))}
         </div>

@@ -76,8 +76,8 @@ const DashboardLayout = () => {
             ))}
           </nav>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-sidebar-border">
-          <div className="text-sm text-muted-foreground mb-2 truncate">
+        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-border">
+          <div className="text-sm text-muted-foreground mb-2 truncate max-w-full overflow-hidden">
             {userEmail}
           </div>
           <Button
