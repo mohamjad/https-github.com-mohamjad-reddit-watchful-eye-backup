@@ -59,7 +59,7 @@ const Login = () => {
         </div>
         <h1 className="text-3xl font-bold text-center mb-2">Welcome back</h1>
         <p className="text-muted-foreground text-center mb-8">
-          Log in to your RedditAlert account
+          Log in to your AlertMe account
         </p>
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="space-y-2">

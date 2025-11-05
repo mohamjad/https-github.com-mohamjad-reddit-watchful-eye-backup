@@ -13,7 +13,7 @@ const Landing = () => {
             <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
               <Bell className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold">RedditAlert</span>
+            <span className="text-xl font-bold">AlertMe</span>
           </div>
           <div className="flex gap-4">
             <Link to="/login">
@@ -234,7 +234,7 @@ const Landing = () => {
       {/* Footer */}
       <footer className="border-t border-border py-12">
         <div className="container mx-auto px-6 text-center text-muted-foreground">
-          <p>© 2024 RedditAlert. All rights reserved.</p>
+          <p>© 2024 AlertMe. All rights reserved.</p>
         </div>
       </footer>
     </div>

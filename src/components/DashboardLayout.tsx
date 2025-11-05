@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bell, Search, Database, Mail, CreditCard, LogOut, Menu, X } from "lucide-react";
+import { Bell, Search, Database, CreditCard, LogOut, Menu, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -38,7 +38,6 @@ const DashboardLayout = () => {
     { icon: Search, label: "Keywords", path: "/app/keywords" },
     { icon: Database, label: "Sources", path: "/app/sources" },
     { icon: Bell, label: "Matches", path: "/app/matches" },
-    { icon: Mail, label: "Notifications", path: "/app/notifications" },
     { icon: CreditCard, label: "Billing", path: "/app/billing" },
   ];
 
@@ -55,7 +54,7 @@ const DashboardLayout = () => {
             <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
               <Bell className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold">RedditAlert</span>
+            <span className="text-lg font-bold">AlertMe</span>
           </div>
           <nav className="space-y-2">
             {navItems.map((item) => (

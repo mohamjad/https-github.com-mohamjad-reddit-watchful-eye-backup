@@ -11,7 +11,6 @@ import Dashboard from "./pages/app/Dashboard";
 import Keywords from "./pages/app/Keywords";
 import Sources from "./pages/app/Sources";
 import Matches from "./pages/app/Matches";
-import Notifications from "./pages/app/Notifications";
 import Billing from "./pages/app/Billing";
 import NotFound from "./pages/NotFound";
 
@@ -32,7 +31,6 @@ const App = () => (
             <Route path="keywords" element={<Keywords />} />
             <Route path="sources" element={<Sources />} />
             <Route path="matches" element={<Matches />} />
-            <Route path="notifications" element={<Notifications />} />
             <Route path="billing" element={<Billing />} />
           </Route>
           <Route path="*" element={<NotFound />} />

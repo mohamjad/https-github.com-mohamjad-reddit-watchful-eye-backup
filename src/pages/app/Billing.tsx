@@ -115,7 +115,7 @@ const Billing = () => {
             >
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="text-3xl font-bold">{plan.price}</div>
+                <div className="text-2xl font-bold">{plan.price}</div>
               </div>
               <ul className="space-y-3 mb-6 flex-1">
                 {plan.features.map((feature, idx) => (
