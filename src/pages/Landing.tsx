@@ -156,7 +156,7 @@ const Landing = () => {
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">Basic</h3>
               <div className="text-4xl font-bold">
-                $29
+                $9.99
                 <span className="text-lg text-muted-foreground">/month</span>
               </div>
               <p className="text-muted-foreground">For individuals</p>
@@ -164,7 +164,7 @@ const Landing = () => {
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>5 keywords</span>
+                <span>10 keywords</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
@@ -172,11 +172,7 @@ const Landing = () => {
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>1 notification channel</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>Email or Slack</span>
+                <span>Email notifications</span>
               </li>
             </ul>
             <Link to="/signup">
@@ -189,10 +185,10 @@ const Landing = () => {
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">Pro</h3>
               <div className="text-4xl font-bold">
-                $79
+                $15.99
                 <span className="text-lg text-muted-foreground">/month</span>
               </div>
-              <p className="text-muted-foreground">For teams</p>
+              <p className="text-muted-foreground">For power users</p>
             </div>
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-2">
@@ -205,16 +201,17 @@ const Landing = () => {
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>5 notification channels</span>
+                <span>X (Twitter) access</span>
               </li>
               <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>Priority support</span>
+                <span className="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-xs font-medium">
+                  Coming Soon
+                </span>
               </li>
             </ul>
-            <Link to="/signup">
-              <Button className="w-full" variant="outline">Get Started</Button>
-            </Link>
+            <a href="https://forms.gle/waitlist" target="_blank" rel="noopener noreferrer">
+              <Button className="w-full" variant="outline">Join Waitlist</Button>
+            </a>
           </Card>
         </div>
       </section>

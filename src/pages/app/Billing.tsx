@@ -51,13 +51,14 @@ const Billing = () => {
     },
     {
       name: "Basic",
-      price: "$29/mo",
-      features: ["5 keywords", "Unlimited alerts", "1 notification channel", "Email or Slack"],
+      price: "$9.99/mo",
+      features: ["10 keywords", "Unlimited alerts", "Email notifications"],
     },
     {
       name: "Pro",
-      price: "$79/mo",
-      features: ["Unlimited keywords", "Unlimited alerts", "5 notification channels", "Priority support"],
+      price: "$15.99/mo",
+      features: ["Unlimited keywords", "Unlimited alerts", "X (Twitter) access", "Coming Soon"],
+      comingSoon: true,
     },
   ];
 
@@ -117,10 +118,18 @@ const Billing = () => {
                 <div className="text-3xl font-bold">{plan.price}</div>
               </div>
               <ul className="space-y-3 mb-6">
-                {plan.features.map((feature) => (
+                {plan.features.map((feature, idx) => (
                   <li key={feature} className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-primary mt-0.5" />
-                    <span>{feature}</span>
+                    {feature === "Coming Soon" ? (
+                      <span className="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-xs font-medium">
+                        {feature}
+                      </span>
+                    ) : (
+                      <>
+                        <Check className="w-5 h-5 text-primary mt-0.5" />
+                        <span>{feature}</span>
+                      </>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -128,6 +137,12 @@ const Billing = () => {
                 <Button className="w-full" variant="outline" disabled>
                   Current Plan
                 </Button>
+              ) : plan.name === "Pro" ? (
+                <a href="https://forms.gle/waitlist" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full" variant="outline">
+                    Join Waitlist
+                  </Button>
+                </a>
               ) : (
                 <Button className="w-full gradient-primary">
                   {plan.name === "Free" ? "Downgrade" : "Upgrade"}
