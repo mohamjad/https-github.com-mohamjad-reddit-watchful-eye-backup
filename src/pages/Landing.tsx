@@ -36,7 +36,7 @@ const Landing = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Stop manually searching Reddit.
             <br />
-            <span className="gradient-primary bg-clip-text text-transparent">
+            <span className="text-primary">
               Get instant alerts.
             </span>
           </h1>

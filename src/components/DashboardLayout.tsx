@@ -34,6 +34,7 @@ const DashboardLayout = () => {
   };
 
   const navItems = [
+    { icon: Bell, label: "Dashboard", path: "/app" },
     { icon: Search, label: "Keywords", path: "/app/keywords" },
     { icon: Database, label: "Sources", path: "/app/sources" },
     { icon: Bell, label: "Matches", path: "/app/matches" },

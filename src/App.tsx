@@ -7,6 +7,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import DashboardLayout from "./components/DashboardLayout";
+import Dashboard from "./pages/app/Dashboard";
 import Keywords from "./pages/app/Keywords";
 import Sources from "./pages/app/Sources";
 import Matches from "./pages/app/Matches";
@@ -27,7 +28,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/app" element={<DashboardLayout />}>
-            <Route index element={<Navigate to="/app/keywords" replace />} />
+            <Route index element={<Dashboard />} />
             <Route path="keywords" element={<Keywords />} />
             <Route path="sources" element={<Sources />} />
             <Route path="matches" element={<Matches />} />
