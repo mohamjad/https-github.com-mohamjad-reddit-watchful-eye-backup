@@ -34,16 +34,20 @@ const Landing = () => {
             <span className="text-sm text-primary">Real-time Reddit monitoring</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Stop manually searching Reddit.
+            Find out if people actually want your idea
             <br />
             <span className="text-primary">
-              Get instant alerts.
+              before you build it.
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Monitor keywords across Reddit in real-time. Get notified instantly when people 
-            mention your product, competitors, or topics you care about.
-          </p>
+          <div className="max-w-3xl mx-auto mb-8 space-y-3">
+            <p className="text-xl text-muted-foreground">
+              Monitor Reddit and X for what people are asking for.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Validate ideas • Discover features • Find customers who need what you're building
+            </p>
+          </div>
           <div className="flex gap-4 justify-center">
             <Link to="/signup">
               <Button size="lg" className="gradient-primary">
@@ -121,13 +125,13 @@ const Landing = () => {
         </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Free Plan */}
-          <Card className="p-8 glass-card">
+          <Card className="p-8 glass-card flex flex-col">
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">Free</h3>
               <div className="text-4xl font-bold">$0</div>
               <p className="text-muted-foreground">Perfect to try it out</p>
             </div>
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
                 <span>1 keyword</span>
@@ -141,13 +145,13 @@ const Landing = () => {
                 <span>All of Reddit</span>
               </li>
             </ul>
-            <Link to="/signup">
+            <Link to="/signup" className="mt-auto">
               <Button className="w-full" variant="outline">Get Started</Button>
             </Link>
           </Card>
 
           {/* Basic Plan */}
-          <Card className="p-8 glass-card border-primary relative">
+          <Card className="p-8 glass-card border-primary relative flex flex-col">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
               <span className="px-4 py-1 rounded-full gradient-primary text-sm font-medium text-white">
                 Most Popular
@@ -161,7 +165,7 @@ const Landing = () => {
               </div>
               <p className="text-muted-foreground">For individuals</p>
             </div>
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
                 <span>10 keywords</span>
@@ -175,13 +179,13 @@ const Landing = () => {
                 <span>Email notifications</span>
               </li>
             </ul>
-            <Link to="/signup">
+            <Link to="/signup" className="mt-auto">
               <Button className="w-full gradient-primary">Get Started</Button>
             </Link>
           </Card>
 
           {/* Pro Plan */}
-          <Card className="p-8 glass-card">
+          <Card className="p-8 glass-card flex flex-col">
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">Pro</h3>
               <div className="text-4xl font-bold">
@@ -190,7 +194,7 @@ const Landing = () => {
               </div>
               <p className="text-muted-foreground">For power users</p>
             </div>
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
                 <span>Unlimited keywords</span>
@@ -209,9 +213,9 @@ const Landing = () => {
                 </span>
               </li>
             </ul>
-            <a href="https://forms.gle/waitlist" target="_blank" rel="noopener noreferrer">
-              <Button className="w-full" variant="outline">Join Waitlist</Button>
-            </a>
+            <Button className="w-full mt-auto" variant="outline" disabled>
+              Join Waitlist
+            </Button>
           </Card>
         </div>
       </section>
