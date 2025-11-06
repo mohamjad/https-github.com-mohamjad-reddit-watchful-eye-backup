@@ -38,6 +38,7 @@ const DashboardLayout = () => {
     { icon: Search, label: "Keywords", path: "/app/keywords" },
     { icon: Database, label: "Sources", path: "/app/sources" },
     { icon: Bell, label: "Matches", path: "/app/matches" },
+    { icon: Bell, label: "Alerts", path: "/app/alerts" },
     { icon: CreditCard, label: "Billing", path: "/app/billing" },
   ];
 
@@ -81,7 +82,7 @@ const DashboardLayout = () => {
           </div>
           <Button
             variant="ghost"
-            className="w-full justify-start"
+            className="justify-start hover:bg-sidebar-accent"
             onClick={handleLogout}
           >
             <LogOut className="w-4 h-4 mr-2" />

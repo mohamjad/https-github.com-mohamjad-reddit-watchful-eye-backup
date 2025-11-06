@@ -40,14 +40,9 @@ const Landing = () => {
               before you build it.
             </span>
           </h1>
-          <div className="max-w-3xl mx-auto mb-8 space-y-3">
-            <p className="text-xl text-muted-foreground">
-              Monitor Reddit and X for what people are asking for.
-            </p>
-            <p className="text-lg text-muted-foreground">
-              Validate ideas • Discover features • Find customers who need what you're building
-            </p>
-          </div>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Monitor Reddit and X for real problems. Validate your idea, discover features people want, and find your first customers.
+          </p>
           <div className="flex gap-4 justify-center">
             <Link to="/signup">
               <Button size="lg" className="gradient-primary">
@@ -61,55 +56,31 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Use Cases Section */}
       <section className="container mx-auto px-6 py-24">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Everything you need to monitor Reddit</h2>
-          <p className="text-muted-foreground text-lg">
-            Powerful features to catch every mention that matters
-          </p>
+          <h2 className="text-4xl font-bold mb-4">Three ways to win with AlertMe</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="p-6 glass-card hover:border-primary/50 transition-all">
-            <Search className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Smart Keyword Tracking</h3>
-            <p className="text-muted-foreground">
-              Track exact phrases or use regex for advanced matching. Monitor specific subreddits or all of Reddit.
-            </p>
-          </Card>
-          <Card className="p-6 glass-card hover:border-primary/50 transition-all">
-            <Bell className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Instant Notifications</h3>
-            <p className="text-muted-foreground">
-              Get alerts via email or Slack the moment your keywords are mentioned. Never miss an opportunity.
-            </p>
-          </Card>
-          <Card className="p-6 glass-card hover:border-primary/50 transition-all">
-            <Zap className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Real-time Monitoring</h3>
-            <p className="text-muted-foreground">
-              Our system checks Reddit continuously. Be the first to respond to relevant conversations.
-            </p>
-          </Card>
-          <Card className="p-6 glass-card hover:border-primary/50 transition-all">
+          <Card className="p-8 glass-card hover:border-primary/50 transition-all">
             <Target className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Subreddit Filtering</h3>
-            <p className="text-muted-foreground">
-              Focus on specific communities or cast a wide net. Track posts and comments separately.
+            <h3 className="text-2xl font-semibold mb-3">Validate your idea</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              See if anyone is actually asking for what you want to build. Search "need a CRM" and find 50 posts in the last week = validation.
             </p>
           </Card>
-          <Card className="p-6 glass-card hover:border-primary/50 transition-all">
-            <Shield className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">No API Limits</h3>
-            <p className="text-muted-foreground">
-              We handle all the Reddit API complexity. You just get the results you need.
-            </p>
-          </Card>
-          <Card className="p-6 glass-card hover:border-primary/50 transition-all">
+          <Card className="p-8 glass-card hover:border-primary/50 transition-all">
             <Sparkles className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Match History</h3>
-            <p className="text-muted-foreground">
-              Access your full history of matches. Filter by keyword, date, or subreddit.
+            <h3 className="text-2xl font-semibold mb-3">Discover features</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Track "wish [your competitor] had X" to build what people actually want. Stop guessing, start building what's requested.
+            </p>
+          </Card>
+          <Card className="p-8 glass-card hover:border-primary/50 transition-all">
+            <Search className="w-12 h-12 text-primary mb-4" />
+            <h3 className="text-2xl font-semibold mb-3">Find customers</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Reply to people who need your product right now. Be there when they're searching for solutions.
             </p>
           </Card>
         </div>
@@ -129,20 +100,11 @@ const Landing = () => {
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">Free</h3>
               <div className="text-4xl font-bold">$0</div>
-              <p className="text-muted-foreground">Perfect to try it out</p>
             </div>
             <ul className="space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
                 <span>1 keyword</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>5 alerts total</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>All of Reddit</span>
               </li>
             </ul>
             <Link to="/signup" className="mt-auto">
@@ -150,7 +112,7 @@ const Landing = () => {
             </Link>
           </Card>
 
-          {/* Basic Plan */}
+          {/* Starter Plan */}
           <Card className="p-8 glass-card border-primary relative flex flex-col">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
               <span className="px-4 py-1 rounded-full gradient-primary text-sm font-medium text-white">
@@ -158,25 +120,21 @@ const Landing = () => {
               </span>
             </div>
             <div className="mb-6">
-              <h3 className="text-2xl font-bold mb-2">Basic</h3>
+              <h3 className="text-2xl font-bold mb-2">Starter</h3>
               <div className="text-4xl font-bold">
                 $9.99
-                <span className="text-lg text-muted-foreground">/month</span>
+                <span className="text-lg text-muted-foreground">/mo</span>
               </div>
-              <p className="text-muted-foreground">For individuals</p>
+              <p className="text-muted-foreground mt-2">Perfect for validating 1-2 ideas</p>
             </div>
             <ul className="space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>10 keywords</span>
+                <span>Reddit monitoring</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>Unlimited alerts</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>Email notifications</span>
+                <span>3 keywords</span>
               </li>
             </ul>
             <Link to="/signup" className="mt-auto">
@@ -190,22 +148,18 @@ const Landing = () => {
               <h3 className="text-2xl font-bold mb-2">Pro</h3>
               <div className="text-4xl font-bold">
                 $15.99
-                <span className="text-lg text-muted-foreground">/month</span>
+                <span className="text-lg text-muted-foreground">/mo</span>
               </div>
-              <p className="text-muted-foreground">For power users</p>
+              <p className="text-muted-foreground mt-2">For serious builders tracking competitors + finding leads</p>
             </div>
             <ul className="space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>Unlimited keywords</span>
+                <span>Reddit + X monitoring</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>Unlimited alerts</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary mt-0.5" />
-                <span>X (Twitter) access</span>
+                <span>15 keywords</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-xs font-medium">

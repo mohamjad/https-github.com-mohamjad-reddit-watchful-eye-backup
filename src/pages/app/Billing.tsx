@@ -47,17 +47,19 @@ const Billing = () => {
     {
       name: "Free",
       price: "$0",
-      features: ["1 keyword", "5 alerts total", "All of Reddit"],
+      features: ["1 keyword"],
     },
     {
-      name: "Basic",
+      name: "Starter",
       price: "$9.99/mo",
-      features: ["10 keywords", "Unlimited alerts", "Email notifications"],
+      description: "Perfect for validating 1-2 ideas",
+      features: ["Reddit monitoring", "3 keywords"],
     },
     {
       name: "Pro",
       price: "$15.99/mo",
-      features: ["Unlimited keywords", "Unlimited alerts", "X (Twitter) access", "Coming Soon"],
+      description: "For serious builders tracking competitors + finding leads",
+      features: ["Reddit + X monitoring", "15 keywords", "Coming Soon"],
       comingSoon: true,
     },
   ];
@@ -116,9 +118,12 @@ const Billing = () => {
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                 <div className="text-2xl font-bold">{plan.price}</div>
+                {plan.description && (
+                  <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
+                )}
               </div>
               <ul className="space-y-3 mb-6 flex-1">
-                {plan.features.map((feature, idx) => (
+                {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-2">
                     {feature === "Coming Soon" ? (
                       <span className="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-xs font-medium">
@@ -138,12 +143,10 @@ const Billing = () => {
                   <Button className="w-full" variant="outline" disabled>
                     Current Plan
                   </Button>
-                ) : plan.name === "Pro" ? (
-                  <a href="https://forms.gle/waitlist" target="_blank" rel="noopener noreferrer" className="block">
-                    <Button className="w-full" variant="outline">
-                      Join Waitlist
-                    </Button>
-                  </a>
+                ) : plan.comingSoon ? (
+                  <Button className="w-full" variant="outline" disabled>
+                    Join Waitlist
+                  </Button>
                 ) : (
                   <Button className="w-full gradient-primary">
                     {plan.name === "Free" ? "Downgrade" : "Upgrade"}
