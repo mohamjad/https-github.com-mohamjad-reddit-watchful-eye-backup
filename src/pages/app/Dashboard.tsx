@@ -24,6 +24,7 @@ const Dashboard = () => {
   const { toast } = useToast();
   const [chartData, setChartData] = useState<ChartData[]>([]);
   const [topMatches, setTopMatches] = useState<Match[]>([]);
+  const [topSubreddits, setTopSubreddits] = useState<{ subreddit: string; count: number }[]>([]);
   const [activityStatus, setActivityStatus] = useState<string>("Calculating...");
   const [loading, setLoading] = useState(true);
 
@@ -78,6 +79,18 @@ const Dashboard = () => {
 
     setChartData(chartArray);
     setTopMatches(matches?.slice(0, 5) || []);
+
+    // Calculate top 3 subreddits
+    const subredditCounts = new Map<string, number>();
+    matches?.forEach(match => {
+      if (match.subreddit) {
+        subredditCounts.set(match.subreddit, (subredditCounts.get(match.subreddit) || 0) + 1);
+      }
+    });
+    const sortedSubreddits = Array.from(subredditCounts, ([subreddit, count]) => ({ subreddit, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 3);
+    setTopSubreddits(sortedSubreddits);
 
     // Calculate activity status based on recent trends
     const last24h = matches?.filter(m => {
@@ -219,6 +232,33 @@ const Dashboard = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Top 3 Subreddits */}
+          {topSubreddits.length > 0 && (
+            <Card className="glass-card">
+              <CardHeader>
+                <CardTitle>Top 3 Subreddits</CardTitle>
+                <CardDescription>Most active subreddits for your keywords</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {topSubreddits.map((item, index) => (
+                    <div key={item.subreddit} className="flex items-center justify-between p-4 rounded-lg border border-border">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">
+                          {index + 1}
+                        </div>
+                        <span className="font-medium">r/{item.subreddit}</span>
+                      </div>
+                      <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                        {item.count} matches
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Top Recent Matches */}
           <Card className="glass-card">

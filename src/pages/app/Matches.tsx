@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Target, TrendingUp, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -57,11 +57,57 @@ const Matches = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <div>
-        <h1 className="text-3xl font-bold">Matches</h1>
+        <div className="flex items-center gap-3 mb-2">
+          <Target className="w-8 h-8 text-primary" />
+          <h1 className="text-3xl font-bold">Matches</h1>
+        </div>
         <p className="text-muted-foreground mt-1">
           Recent keyword matches from Reddit
         </p>
       </div>
+
+      {!loading && matches.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="glass-card p-4">
+            <div className="flex items-center gap-3">
+              <Target className="w-5 h-5 text-primary" />
+              <div>
+                <p className="text-2xl font-bold">{matches.length}</p>
+                <p className="text-sm text-muted-foreground">Total Matches</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="glass-card p-4">
+            <div className="flex items-center gap-3">
+              <TrendingUp className="w-5 h-5 text-primary" />
+              <div>
+                <p className="text-2xl font-bold">
+                  {matches.filter(m => {
+                    const matchDate = new Date(m.created_at_utc);
+                    const oneDayAgo = new Date();
+                    oneDayAgo.setHours(oneDayAgo.getHours() - 24);
+                    return matchDate > oneDayAgo;
+                  }).length}
+                </p>
+                <p className="text-sm text-muted-foreground">Last 24 Hours</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="glass-card p-4">
+            <div className="flex items-center gap-3">
+              <Clock className="w-5 h-5 text-primary" />
+              <div>
+                <p className="text-2xl font-bold">
+                  {matches.length > 0 
+                    ? new Date(matches[0].created_at_utc).toLocaleDateString()
+                    : "N/A"}
+                </p>
+                <p className="text-sm text-muted-foreground">Latest Match</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      )}
 
       {loading ? (
         <Card className="glass-card p-8">

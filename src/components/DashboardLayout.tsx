@@ -48,9 +48,9 @@ const DashboardLayout = () => {
       <aside
         className={`${
           sidebarOpen ? "w-64" : "w-0"
-        } transition-all duration-300 border-r border-border bg-sidebar overflow-hidden`}
+        } transition-all duration-300 border-r border-border bg-sidebar overflow-hidden flex flex-col`}
       >
-        <div className="p-6">
+        <div className="p-6 flex-1">
           <div className="flex items-center gap-2 mb-8">
             <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
               <Bell className="w-5 h-5 text-white" />
@@ -76,8 +76,8 @@ const DashboardLayout = () => {
             ))}
           </nav>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-border">
-          <div className="text-sm text-muted-foreground mb-2 truncate max-w-full overflow-hidden">
+        <div className="mt-auto p-6">
+          <div className="text-sm text-muted-foreground mb-2 truncate">
             {userEmail}
           </div>
           <Button

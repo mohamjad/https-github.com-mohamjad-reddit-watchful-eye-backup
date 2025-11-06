@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Bell, Search, Zap, Shield, Target, Sparkles, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import RotatingText from "@/components/RotatingText";
 
 const Landing = () => {
   return (
@@ -34,12 +35,16 @@ const Landing = () => {
             <span className="text-sm text-primary">Real-time Reddit monitoring</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Find out if people actually want your idea
+            They're already talking about your idea.
             <br />
             <span className="text-primary">
-              before you build it.
+              You just don't know where.
             </span>
           </h1>
+          <div className="flex items-center justify-center gap-2 mb-8">
+            <span className="text-lg text-muted-foreground">Used by 500+</span>
+            <RotatingText />
+          </div>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Monitor Reddit and X for real problems. Validate your idea, discover features people want, and find your first customers.
           </p>
