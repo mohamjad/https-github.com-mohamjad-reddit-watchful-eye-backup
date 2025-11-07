@@ -41,12 +41,12 @@ const Landing = () => {
               You just don't know where.
             </span>
           </h1>
-          <div className="flex items-center justify-center gap-2 mb-8">
+          <div className="flex items-center justify-center gap-1.5 mb-8">
             <span className="text-lg text-muted-foreground">Used by 500+</span>
             <RotatingText />
           </div>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Monitor Reddit and X for real problems. Validate your idea, discover features people want, and find your first customers.
+            Stop building in the dark. Find real conversations about your space, validate demand before you code, and reply to potential customers while they're actively looking for solutions.
           </p>
           <div className="flex gap-4 justify-center">
             <Link to="/signup">
@@ -69,23 +69,23 @@ const Landing = () => {
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="p-8 glass-card hover:border-primary/50 transition-all">
             <Target className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-2xl font-semibold mb-3">Validate your idea</h3>
+            <h3 className="text-2xl font-semibold mb-3">Validate before you build</h3>
             <p className="text-muted-foreground leading-relaxed">
-              See if anyone is actually asking for what you want to build. Search "need a CRM" and find 50 posts in the last week = validation.
+              Search "need a CRM for small teams" and discover 50+ posts from last week. That's not a hunch—that's validated demand worth building for.
             </p>
           </Card>
           <Card className="p-8 glass-card hover:border-primary/50 transition-all">
             <Sparkles className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-2xl font-semibold mb-3">Discover features</h3>
+            <h3 className="text-2xl font-semibold mb-3">Build what people ask for</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Track "wish [your competitor] had X" to build what people actually want. Stop guessing, start building what's requested.
+              Track complaints about competitors. When you see "I wish Notion had better offline mode" 20 times, you know exactly what feature to build next.
             </p>
           </Card>
           <Card className="p-8 glass-card hover:border-primary/50 transition-all">
             <Search className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-2xl font-semibold mb-3">Find customers</h3>
+            <h3 className="text-2xl font-semibold mb-3">Be there when they're looking</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Reply to people who need your product right now. Be there when they're searching for solutions.
+              Get notified when someone posts "looking for alternatives to [competitor]." Reply with your solution while they're actively shopping.
             </p>
           </Card>
         </div>

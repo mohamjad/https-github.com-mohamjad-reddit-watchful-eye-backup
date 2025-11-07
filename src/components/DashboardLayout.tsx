@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bell, Search, Database, CreditCard, LogOut, Menu, X } from "lucide-react";
+import { Bell, Search, Database, CreditCard, LogOut, Menu, X, LayoutDashboard, Key, Crosshair, Rss } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -34,11 +34,11 @@ const DashboardLayout = () => {
   };
 
   const navItems = [
-    { icon: Bell, label: "Dashboard", path: "/app" },
-    { icon: Search, label: "Keywords", path: "/app/keywords" },
+    { icon: LayoutDashboard, label: "Dashboard", path: "/app" },
+    { icon: Key, label: "Keywords", path: "/app/keywords" },
     { icon: Database, label: "Sources", path: "/app/sources" },
-    { icon: Bell, label: "Matches", path: "/app/matches" },
-    { icon: Bell, label: "Alerts", path: "/app/alerts" },
+    { icon: Crosshair, label: "Matches", path: "/app/matches" },
+    { icon: Rss, label: "Alerts", path: "/app/alerts" },
     { icon: CreditCard, label: "Billing", path: "/app/billing" },
   ];
 

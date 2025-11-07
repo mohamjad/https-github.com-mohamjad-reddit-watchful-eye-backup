@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Target, TrendingUp, Clock } from "lucide-react";
+import { ExternalLink, Crosshair, TrendingUp, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -58,7 +58,7 @@ const Matches = () => {
     <div className="space-y-6 animate-fade-in">
       <div>
         <div className="flex items-center gap-3 mb-2">
-          <Target className="w-8 h-8 text-primary" />
+          <Crosshair className="w-8 h-8 text-primary" />
           <h1 className="text-3xl font-bold">Matches</h1>
         </div>
         <p className="text-muted-foreground mt-1">
@@ -70,7 +70,7 @@ const Matches = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card className="glass-card p-4">
             <div className="flex items-center gap-3">
-              <Target className="w-5 h-5 text-primary" />
+              <Crosshair className="w-5 h-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{matches.length}</p>
                 <p className="text-sm text-muted-foreground">Total Matches</p>
