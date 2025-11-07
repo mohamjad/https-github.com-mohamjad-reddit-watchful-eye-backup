@@ -47,19 +47,19 @@ const Billing = () => {
     {
       name: "Free",
       price: "$0",
-      features: ["1 keyword"],
+      features: ["1 keyword", "Email alerts"],
     },
     {
       name: "Starter",
       price: "$9.99/mo",
       description: "Perfect for validating 1-2 ideas",
-      features: ["Reddit monitoring", "3 keywords"],
+      features: ["Reddit monitoring", "3 keywords", "Email alerts"],
     },
     {
       name: "Pro",
-      price: "$15.99/mo",
+      price: "$19.99/mo",
       description: "For serious builders tracking competitors + finding leads",
-      features: ["Reddit + X monitoring", "15 keywords", "Coming Soon"],
+      features: ["Reddit + X monitoring", "15 keywords", "Email alerts", "Slack integration", "Webhook integration", "Coming Soon"],
       comingSoon: true,
     },
   ];

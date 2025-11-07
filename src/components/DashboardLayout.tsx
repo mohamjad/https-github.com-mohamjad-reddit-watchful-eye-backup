@@ -55,7 +55,7 @@ const DashboardLayout = () => {
             <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
               <Bell className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold">AlertMe</span>
+            <span className="text-lg font-bold">Sift</span>
           </div>
           <nav className="space-y-2">
             {navItems.map((item) => (
