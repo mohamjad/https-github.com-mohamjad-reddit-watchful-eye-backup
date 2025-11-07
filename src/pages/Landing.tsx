@@ -111,6 +111,10 @@ const Landing = () => {
                 <Check className="w-5 h-5 text-primary mt-0.5" />
                 <span>1 keyword</span>
               </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-primary mt-0.5" />
+                <span>Email alerts</span>
+              </li>
             </ul>
             <Link to="/signup" className="mt-auto">
               <Button className="w-full" variant="outline">Get Started</Button>
@@ -141,6 +145,10 @@ const Landing = () => {
                 <Check className="w-5 h-5 text-primary mt-0.5" />
                 <span>3 keywords</span>
               </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-primary mt-0.5" />
+                <span>Email alerts</span>
+              </li>
             </ul>
             <Link to="/signup" className="mt-auto">
               <Button className="w-full gradient-primary">Get Started</Button>
@@ -152,7 +160,7 @@ const Landing = () => {
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">Pro</h3>
               <div className="text-4xl font-bold">
-                $15.99
+                $19.99
                 <span className="text-lg text-muted-foreground">/mo</span>
               </div>
               <p className="text-muted-foreground mt-2">For serious builders tracking competitors + finding leads</p>
@@ -165,6 +173,18 @@ const Landing = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5" />
                 <span>15 keywords</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-primary mt-0.5" />
+                <span>Email alerts</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-primary mt-0.5" />
+                <span>Slack integration</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-primary mt-0.5" />
+                <span>Webhook integration</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-xs font-medium">
