@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Search } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -26,11 +26,24 @@ const Keywords = () => {
   const [isRegex, setIsRegex] = useState(false);
   const [plan, setPlan] = useState("free");
   const [keywordLimit, setKeywordLimit] = useState(1);
+  const [scansRemaining, setScansRemaining] = useState(2);
+  const [nextReset, setNextReset] = useState<Date | null>(null);
+  const [scanning, setScanning] = useState(false);
 
   useEffect(() => {
     fetchKeywords();
     fetchSubscription();
+    calculateNextReset();
   }, []);
+
+  const calculateNextReset = () => {
+    const now = new Date();
+    const est = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+    const tomorrow = new Date(est);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    setNextReset(tomorrow);
+  };
 
   const fetchSubscription = async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -127,6 +140,30 @@ const Keywords = () => {
     }
   };
 
+  const handleManualScan = async () => {
+    if (plan === "free" && scansRemaining <= 0) {
+      toast({
+        title: "Scan limit reached",
+        description: `Next scan available at ${nextReset?.toLocaleTimeString("en-US", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit" })} EST`,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setScanning(true);
+    // Simulate scan - backend will handle actual logic
+    setTimeout(() => {
+      if (plan === "free") {
+        setScansRemaining(prev => Math.max(0, prev - 1));
+      }
+      toast({
+        title: "Scan initiated",
+        description: "Checking for new matches...",
+      });
+      setScanning(false);
+    }, 1000);
+  };
+
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex justify-between items-center">
@@ -136,14 +173,29 @@ const Keywords = () => {
             Manage the keywords you're monitoring
           </p>
         </div>
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button className="gradient-primary">
-              <Plus className="w-4 h-4 mr-2" />
-              Add Keyword
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
+        <div className="flex gap-3 items-center">
+          {plan === "free" && (
+            <div className="text-sm text-muted-foreground">
+              {scansRemaining} / 2 scans remaining
+              <div className="text-xs">Resets at midnight EST</div>
+            </div>
+          )}
+          <Button 
+            onClick={handleManualScan} 
+            disabled={scanning || (plan === "free" && scansRemaining <= 0)}
+            variant="outline"
+          >
+            <Search className="w-4 h-4 mr-2" />
+            {scanning ? "Scanning..." : "Scan Now"}
+          </Button>
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button className="gradient-primary">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Keyword
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
             <DialogHeader>
               <DialogTitle>Add New Keyword</DialogTitle>
             </DialogHeader>
@@ -171,8 +223,9 @@ const Keywords = () => {
                 Add Keyword
               </Button>
             </div>
-          </DialogContent>
-        </Dialog>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
       <Card className="glass-card">

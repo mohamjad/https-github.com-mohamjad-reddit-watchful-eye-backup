@@ -48,16 +48,11 @@ const Landing = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Stop building in the dark. Find real conversations about your space, validate demand before you code, and reply to potential customers while they're actively looking for solutions.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link to="/signup">
-              <Button size="lg" className="gradient-primary">
-                Start Free Trial
-              </Button>
-            </Link>
-            <Button size="lg" variant="outline">
-              Watch Demo
+          <Link to="/login">
+            <Button size="lg" className="gradient-primary">
+              Get Started
             </Button>
-          </div>
+          </Link>
         </div>
       </section>
 
@@ -206,9 +201,9 @@ const Landing = () => {
           <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
             Join hundreds of businesses monitoring Reddit for opportunities
           </p>
-          <Link to="/signup">
+          <Link to="/login">
             <Button size="lg" className="gradient-primary">
-              Start Free Trial
+              Get Started
             </Button>
           </Link>
         </Card>
