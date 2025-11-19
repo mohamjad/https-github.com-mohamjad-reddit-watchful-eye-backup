@@ -18,8 +18,8 @@ All colors MUST be HSL.
     --popover: 222 47% 8%;
     --popover-foreground: 210 40% 98%;
 
-    /* Orange primary for alerts/monitoring theme */
-    --primary: 24 95% 55%;
+    /* Purple-blue primary for alerts/monitoring theme */
+    --primary: 250 80% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 217 32% 17%;
@@ -37,12 +37,12 @@ All colors MUST be HSL.
 
     --border: 215 25% 12%;
     --input: 217 32% 18%;
-    --ring: 24 95% 55%;
+    --ring: 250 80% 60%;
 
     --radius: 0.75rem;
 
     /* Gradient tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(24 95% 55%), hsl(31 95% 50%));
+    --gradient-primary: linear-gradient(135deg, hsl(250 80% 60%), hsl(260 75% 65%));
     --gradient-card: linear-gradient(135deg, hsl(222 47% 8% / 0.5), hsl(222 47% 10% / 0.3));
     
     /* Glassmorphic effects */
@@ -51,12 +51,12 @@ All colors MUST be HSL.
 
     --sidebar-background: 222 47% 6%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 24 95% 55%;
+    --sidebar-primary: 250 80% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 217 32% 15%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 217 32% 18%;
-    --sidebar-ring: 24 95% 55%;
+    --sidebar-ring: 250 80% 60%;
   }
 }
 

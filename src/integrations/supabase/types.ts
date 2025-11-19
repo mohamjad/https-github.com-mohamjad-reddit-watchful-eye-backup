@@ -139,6 +139,8 @@ export type Database = {
           id: string
           include_comments: boolean | null
           subreddit: string | null
+          platform: string | null
+          region: string | null
           user_id: string
         }
         Insert: {
@@ -146,6 +148,8 @@ export type Database = {
           id?: string
           include_comments?: boolean | null
           subreddit?: string | null
+          platform?: string | null
+          region?: string | null
           user_id: string
         }
         Update: {
@@ -153,7 +157,30 @@ export type Database = {
           id?: string
           include_comments?: boolean | null
           subreddit?: string | null
+          platform?: string | null
+          region?: string | null
           user_id?: string
+        }
+        Relationships: []
+      }
+      daily_scans: {
+        Row: {
+          id: number
+          user_id: string
+          scan_date: string
+          created_at: string | null
+        }
+        Insert: {
+          id?: number
+          user_id: string
+          scan_date: string
+          created_at?: string | null
+        }
+        Update: {
+          id?: number
+          user_id?: string
+          scan_date?: string
+          created_at?: string | null
         }
         Relationships: []
       }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bell, Search, Database, CreditCard, LogOut, Menu, X, LayoutDashboard, Key, Crosshair, Rss } from "lucide-react";
+import { Bell, Search, Database, CreditCard, LogOut, Menu, X, LayoutDashboard, Key, Crosshair, Rss, Shield } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -10,6 +10,7 @@ const DashboardLayout = () => {
   const { toast } = useToast();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [userEmail, setUserEmail] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     checkAuth();
@@ -21,6 +22,15 @@ const DashboardLayout = () => {
       navigate("/login");
     } else {
       setUserEmail(session.user.email || "");
+      
+      // Check if user is admin
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("is_admin")
+        .eq("id", session.user.id)
+        .single();
+      
+      setIsAdmin(profile?.is_admin || false);
     }
   };
 
@@ -35,11 +45,12 @@ const DashboardLayout = () => {
 
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/app" },
+    { icon: Crosshair, label: "Matches", path: "/app/matches" },
     { icon: Key, label: "Keywords", path: "/app/keywords" },
     { icon: Database, label: "Sources", path: "/app/sources" },
-    { icon: Crosshair, label: "Matches", path: "/app/matches" },
     { icon: Rss, label: "Alerts", path: "/app/alerts" },
     { icon: CreditCard, label: "Billing", path: "/app/billing" },
+    ...(isAdmin ? [{ icon: Shield, label: "Admin", path: "/app/admin" }] : []),
   ];
 
   return (

@@ -1,73 +1,256 @@
-# Welcome to your Lovable project
+# Reddit Watchful Eye
 
-## Project info
+A fully functional Reddit monitoring application that tracks keywords across Reddit posts and comments, alerting you when your keywords are mentioned.
 
-**URL**: https://lovable.dev/projects/913d4f40-7a2c-41ce-a57e-8744689bb888
+## Features
 
-## How can I edit this code?
+- 🔍 **Keyword Monitoring**: Track exact phrases or regex patterns across Reddit
+- 📊 **Dashboard**: View match statistics, trends, and top subreddits
+- 🎯 **Sources Management**: Monitor specific subreddits or all of Reddit
+- 🔔 **Alerts**: Email notifications for keyword matches (coming soon: Slack, webhooks)
+- 💳 **Subscription Tiers**: Free, Basic, and Pro plans with different limits
+- 📈 **Match History**: View and manage all your keyword matches
+- ⚡ **Real-time Scanning**: Manual and scheduled scans
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend**: React + TypeScript + Vite
+- **UI Components**: shadcn/ui + Tailwind CSS
+- **Backend**: Supabase (Database + Edge Functions)
+- **Authentication**: Supabase Auth
+- **Reddit API**: Public Reddit JSON API
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/913d4f40-7a2c-41ce-a57e-8744689bb888) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18+ and npm
+- Supabase account (free tier works)
+- Git
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd reddit-watchful-eye
+   ```
 
-Follow these steps:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Set up Supabase**
+   - Create a new project at [supabase.com](https://supabase.com)
+   - Go to SQL Editor and run all migrations in `supabase/migrations/`
+   - Get your project URL and API keys from Settings > API
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Fill in your Supabase credentials:
+   ```
+   VITE_SUPABASE_URL=your_project_url
+   VITE_SUPABASE_PUBLISHABLE_KEY=your_anon_key
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+5. **Deploy Supabase Edge Functions**
+   ```bash
+   # Install Supabase CLI if you haven't
+   npm install -g supabase
+   
+   # Login to Supabase
+   supabase login
+   
+   # Link your project
+   supabase link --project-ref your-project-ref
+   
+   # Deploy functions
+   supabase functions deploy scan-reddit
+   supabase functions deploy scheduled-scan
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+6. **Set environment variables for Edge Functions**
+   - Go to Supabase Dashboard > Edge Functions > scan-reddit > Settings
+   - Add environment variables:
+     - `SUPABASE_URL`: Your Supabase project URL
+     - `SUPABASE_SERVICE_ROLE_KEY`: Your service role key (keep secret!)
+     - `CRON_SECRET`: A random string for securing scheduled scans
+
+7. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+   The app will be available at `http://localhost:8080`
+
+## Setting Up Scheduled Scans
+
+To enable automatic scanning, you have several options:
+
+### Option 1: External Cron Service (Easiest)
+
+1. Sign up for a free cron service like [cron-job.org](https://cron-job.org)
+2. Create a new cron job that calls:
+   ```
+   POST https://YOUR_PROJECT_REF.supabase.co/functions/v1/scheduled-scan
+   Headers:
+     Authorization: Bearer YOUR_SERVICE_ROLE_KEY
+     Content-Type: application/json
+   Body:
+     { "cron_secret": "YOUR_CRON_SECRET" }
+   ```
+3. Set it to run hourly or as desired
+
+### Option 2: GitHub Actions (Free)
+
+Create `.github/workflows/scheduled-scan.yml`:
+```yaml
+name: Scheduled Reddit Scan
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Scan
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"cron_secret": "${{ secrets.CRON_SECRET }}"}' \
+            https://YOUR_PROJECT_REF.supabase.co/functions/v1/scheduled-scan
+```
+
+### Option 3: Supabase pg_cron (Requires Enterprise)
+
+If you have pg_cron enabled, you can use the SQL in `supabase/migrations/20250104000001_scheduled_scans.sql`
+
+## Project Structure
+
+```
+├── src/
+│   ├── components/       # React components
+│   ├── pages/            # Page components
+│   ├── lib/              # Utility functions
+│   └── integrations/     # Supabase client setup
+├── supabase/
+│   ├── functions/        # Edge Functions
+│   │   ├── scan-reddit/      # Manual scan endpoint
+│   │   └── scheduled-scan/   # Scheduled scan endpoint
+│   └── migrations/       # Database migrations
+└── public/               # Static assets
+```
+
+## Features by Plan
+
+### Free Tier
+- 1 keyword
+- 2 manual scans per day
+- Email alerts
+- All of Reddit or specific subreddits
+
+### Basic Tier ($9.99/mo)
+- 5 keywords
+- Unlimited scans
+- Email alerts
+- All of Reddit or specific subreddits
+
+### Pro Tier ($19.99/mo) - Coming Soon
+- 15 keywords
+- Unlimited scans
+- Email alerts
+- Slack integration
+- Webhook integration
+- Reddit + X (Twitter) monitoring
+
+## Development
+
+### Running Locally
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Building for Production
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+```
 
-**Use GitHub Codespaces**
+### Testing Edge Functions Locally
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+# Start Supabase locally
+supabase start
 
-## What technologies are used for this project?
+# Serve functions locally
+supabase functions serve scan-reddit
+```
 
-This project is built with:
+## API Endpoints
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### `POST /functions/v1/scan-reddit`
+Manually trigger a scan for the authenticated user.
 
-## How can I deploy this project?
+**Headers:**
+- `Authorization: Bearer <user_token>`
 
-Simply open [Lovable](https://lovable.dev/projects/913d4f40-7a2c-41ce-a57e-8744689bb888) and click on Share -> Publish.
+**Body:**
+```json
+{
+  "sourceId": "optional-source-id"
+}
+```
 
-## Can I connect a custom domain to my Lovable project?
+**Response:**
+```json
+{
+  "message": "Scan completed successfully",
+  "matches": 5,
+  "newMatches": 3
+}
+```
 
-Yes, you can!
+### `POST /functions/v1/scheduled-scan`
+Scheduled scan endpoint (requires cron secret).
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+**Headers:**
+- `Authorization: Bearer <service_role_key>`
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+**Body:**
+```json
+{
+  "cron_secret": "your_cron_secret"
+}
+```
+
+## Troubleshooting
+
+### Edge Functions not working
+- Ensure you've deployed the functions: `supabase functions deploy scan-reddit`
+- Check that environment variables are set in Supabase Dashboard
+- Verify your service role key is correct
+
+### No matches found
+- Check that you have keywords and sources configured
+- Verify keywords are spelled correctly
+- Try a common keyword to test (e.g., "hello")
+- Check Reddit API rate limits (60 requests/minute)
+
+### Authentication issues
+- Ensure `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` are set correctly
+- Clear browser cache and localStorage
+- Check Supabase project is active
+
+## License
+
+MIT
+
+## Support
+
+For issues and questions, please open an issue on GitHub.

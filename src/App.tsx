@@ -13,6 +13,7 @@ import Sources from "./pages/app/Sources";
 import Matches from "./pages/app/Matches";
 import Alerts from "./pages/app/Alerts";
 import Billing from "./pages/app/Billing";
+import Admin from "./pages/app/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="matches" element={<Matches />} />
             <Route path="alerts" element={<Alerts />} />
             <Route path="billing" element={<Billing />} />
+            <Route path="admin" element={<Admin />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
